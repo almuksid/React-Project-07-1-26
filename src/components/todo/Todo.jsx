@@ -8,12 +8,23 @@ const Todo = () => {
 
     const [todoTitle, setTodoTitle] = useState("")
 
+    const [todoList, setTodoList] = useState(() => {
+        const data = localStorage.getItem("todos");
 
-    const [todoList, setTodoList] = useState([
-        { id: 1, title: "todo1", isCompleted: true },
-        { id: 2, title: "todo2", isCompleted: false },
-        { id: 3, title: "todo3", isCompleted: true },
-    ])
+        if (!data) {
+            return [];
+        }
+
+        return JSON.parse(data);
+    });
+
+    localStorage.setItem("todos", JSON.stringify(todoList))
+
+    // const [todoList, setTodoList] = useState([
+    //     { id: 1, title: "todo1", isCompleted: true },
+    //     { id: 2, title: "todo2", isCompleted: false },
+    //     { id: 3, title: "todo3", isCompleted: true },
+    // ])
 
     // Add data to localStorage inside Todo App
 
